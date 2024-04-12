@@ -1,0 +1,59 @@
+#include<stdio.h>
+void seatlist();
+void booking();
+int main(){
+printf(" welcome to LMR theatre\n\n");
+printf("*******LMR theatre*******\n\n");
+printf(" RESERVATION\n\n");
+printf(" 1.View Seat List\n 2.Book Tickets\n");
+int e;
+printf("\n\nEnter Your Choice Please");
+scanf("%d",&e);
+char
+a[8][4]={{"****"},{"****"},{"****"},{"****"},{"****"},{"****"},{"****"},{"****"}};
+while(e!=0){
+switch (e){
+case 1:
+seatlist(a);
+break;
+case 2:
+booking(a);
+break;
+default:
+printf("Invalid Choice");
+}
+printf("\n\nEnter Your Choice Please");
+scanf("%d",&e);
+}
+}
+void seatlist(char a[][4]){
+for(int i=0;i<8;i++){
+for(int j=0;j<4;j++){
+if(j==2)
+printf(" ");
+printf("%c",a[i][j]);
+}
+printf("\n");
+}
+}
+void booking(char a[][4]){int r,s,ts=0;
+char choice;
+do {
+printf("Available Seats:\n");
+seatlist(a);
+printf("Enter row and seat number to book:\n");
+scanf("%d %d", &r, &s);
+if (a[r-1][s-1]== '*') {
+a[r-1][s-1] = '/';
+printf("Seat booked successfully!\n");
+ts++;
+seatlist(a);
+} else {
+printf("Sorry, that seat is already booked. Please choose another.\n");
+}
+printf("Do you want to book another seat? (Y/N)\n");
+scanf(" %c", &choice);
+} while (choice == 'Y' || choice == 'y');
+printf("Total seats booked: %d\n", ts);
+printf("THANK YOU FOR BOOKING");
+}
